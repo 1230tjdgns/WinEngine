@@ -20,7 +20,10 @@ namespace WE
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		virtual void Render(const HDC hdc);
+
+		void SetLayerType(const eLayerType type) { mLayerType = type; }
+		eLayerType GetLayerType() const { return mLayerType; }
 
 	private:
 		eState mState;

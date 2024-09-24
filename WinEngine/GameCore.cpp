@@ -1,4 +1,6 @@
 #include "GameCore.h"
+#include "Time.h"
+#include "Input.h"
 
 namespace WE
 {
@@ -27,10 +29,14 @@ namespace WE
 
 		setWindowSize();
 		createBackHDC();
+
+		Time::Initialize();
+		Input::Initialize();
 	}
 
 	void GameCore::Update()
 	{
+		Time::Tick();
 	}
 
 	void GameCore::LateUpdate()
@@ -40,6 +46,8 @@ namespace WE
 	void GameCore::Render()
 	{
 		clearScreen();
+
+		Time::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}

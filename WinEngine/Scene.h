@@ -1,21 +1,23 @@
 #pragma once
-#include "Tag.h"
+#include "Layer.h"
 
 namespace WE
 {
-	class Component : public Tag
+	class Scene : public Tag
 	{
 	public:
-		Component(eComponentType type);
-		~Component();
+		Scene();
+		~Scene();
 
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(const HDC hdc);
 
+		void AddEntity(Entity* entity);
+
 	private:
-		eComponentType mType;
+		std::vector<Layer*> mLayers;
 	};
 }
 

@@ -21,6 +21,7 @@
 
 // 커스텀 헤더
 #include "Enums.h"
+#include "CommonFunctions.h"
 
 // 매크로
 #define WINCLASS	L"WinClass"

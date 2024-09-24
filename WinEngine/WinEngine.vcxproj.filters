@@ -38,6 +38,21 @@
     <Filter Include="Assets\Entities">
       <UniqueIdentifier>{8295da09-a9e3-44cb-8fe9-8621fe6f19bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Scene">
+      <UniqueIdentifier>{20de01e8-baf7-460e-b577-39dd836ee16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Layer">
+      <UniqueIdentifier>{02a105ca-407f-4453-a1ac-c49f03924b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Time">
+      <UniqueIdentifier>{4de1529e-f064-44a9-81bf-ac7985236ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\Headers\Utilities">
+      <UniqueIdentifier>{29a67902-12f7-4c29-8596-7a4fce18a027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Input">
+      <UniqueIdentifier>{8002bd9c-7552-479b-9b8f-9f10618cb259}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -61,6 +76,24 @@
     <ClInclude Include="Component.h">
       <Filter>System\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>System\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEntity.h">
+      <Filter>Assets\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>System\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonFunctions.h">
+      <Filter>System\Common\Headers\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>System\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinEngine.cpp" />
@@ -75,6 +108,21 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>System\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>System\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="TestEntity.cpp">
+      <Filter>Assets\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>System\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>System\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
