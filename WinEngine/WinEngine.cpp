@@ -1,8 +1,10 @@
-﻿#include "framework.h"
-#include "WinEngine.h"
+﻿#include "resource.h"
+#include "framework.h"
+#include "GameCore.h"
 
 // 전역 변수:
 HINSTANCE hInst;
+WE::GameCore core;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -24,8 +26,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINENGINE));
-
     MSG msg;
 
     // 기본 메시지 루프
@@ -38,17 +38,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                 break;
             }
 
-            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-            {
-                TranslateMessage(&msg);
-                DispatchMessage(&msg);
-            }
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+
         }
         else
         {
-
+            core.Run();
         }
     }
+
+    core.Release();
 
     return (int) msg.wParam;
 }
@@ -69,7 +69,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = NULL;
     wcex.lpszClassName  = WINCLASS;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
 }
@@ -86,6 +86,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   core.Initialize(hWnd);
+
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -96,6 +98,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_KEYDOWN:
+        if(wParam == VK_ESCAPE)
+            PostQuitMessage(0);
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
