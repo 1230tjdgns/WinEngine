@@ -1,31 +1,28 @@
 #include "TestEntity.h"
-#include "Input.h"
 
 namespace WE
 {
 	TestEntity::TestEntity()
 	{
 	}
+
 	TestEntity::~TestEntity()
 	{
 	}
 	void TestEntity::Initialize()
 	{
-		keytest = false;
+		Entity::Initialize();
 	}
 	void TestEntity::Update()
 	{
-		keytest = Input::IsKeyToggle(VK_SPACE);
+		Entity::Update();
 	}
 	void TestEntity::LateUpdate()
 	{
+		Entity::LateUpdate();
 	}
 	void TestEntity::Render(const HDC hdc)
 	{
-		if (keytest)
-		{
-			Rectangle(hdc, 100, 100, 200, 200);
-
-		}
+		Entity::Render(hdc);
 	}
 }

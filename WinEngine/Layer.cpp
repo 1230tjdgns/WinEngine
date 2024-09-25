@@ -38,7 +38,8 @@ namespace WE
 	{
 		for (Entity*& ent : mEntities)
 		{
-			ent->Update();
+			if (ent->IsEnable())
+				ent->Update();
 		}
 	}
 
@@ -46,7 +47,8 @@ namespace WE
 	{
 		for (Entity*& ent : mEntities)
 		{
-			ent->LateUpdate();
+			if (ent->IsEnable())
+				ent->LateUpdate();
 		}
 	}
 
@@ -54,12 +56,26 @@ namespace WE
 	{
 		for (Entity*& ent : mEntities)
 		{
-			ent->Render(hdc);
+			if (ent->IsEnable())
+				ent->Render(hdc);
 		}
 	}
 
 	void Layer::AddEntity(Entity* entity)
 	{
 		mEntities.push_back(entity);
+	}
+
+	void Layer::CollectDestroyedEntities(std::vector<Entity*>& vec)
+	{
+		for (Entity*& ent : mEntities)
+		{
+			if (ent->IsDestroy())
+			{
+				vec.push_back(ent);
+			}
+		}
+
+		EraseVector(mEntities, [](Entity* ent) { return ent->IsDestroy(); });
 	}
 }

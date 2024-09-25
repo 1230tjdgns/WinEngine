@@ -18,10 +18,13 @@
 #include <bitset>
 #include <cassert>
 #include <string>
+#include <set>
+#include <unordered_set>
 
 // 커스텀 헤더
 #include "Enums.h"
 #include "CommonFunctions.h"
+#include "Math.h"
 
 // 매크로
 #define WINCLASS	L"WinClass"

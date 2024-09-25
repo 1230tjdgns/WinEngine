@@ -1,14 +1,18 @@
 #include "Entity.h"
 #include "Component.h"
+#include "Transform.h"
 
 namespace WE
 {
-	Entity::Entity() :
-		mState(eState::ALIVE),
-		mLayerType(eLayerType::NONE),
+	Entity::Entity(
+		const eLayerType& layer,
+		const eState& state) :
+		mState(state),
+		mLayerType(layer),
 		mComponents{}
 	{
 		mComponents.resize((UINT)eComponentType::END, nullptr);
+		AddComponent<Transform>();
 	}
 
 	Entity::~Entity()
@@ -27,7 +31,8 @@ namespace WE
 	{
 		for (Component*& comp : mComponents)
 		{
-			comp->Initialize();
+			if(comp != nullptr)
+				comp->Initialize();
 		}
 	}
 
@@ -35,7 +40,8 @@ namespace WE
 	{
 		for (Component*& comp : mComponents)
 		{
-			comp->Update();
+			if (comp != nullptr)
+				comp->Update();	
 		}
 	}
 
@@ -43,7 +49,8 @@ namespace WE
 	{
 		for (Component*& comp : mComponents)
 		{
-			comp->LateUpdate();
+			if (comp != nullptr)
+				comp->LateUpdate();
 		}
 	}
 
@@ -51,7 +58,8 @@ namespace WE
 	{
 		for (Component*& comp : mComponents)
 		{
-			comp->Render(hdc);
+			if (comp != nullptr)
+				comp->Render(hdc);
 		}
 	}
 }

@@ -21,8 +21,8 @@ namespace WE
 
 		void Release();
 
-		float GetWidth() const { return mWidth; }
-		float GetHeight() const { return mHeight; }
+		inline float GetWidth() const { return mWidth; }
+		inline float GetHeight() const { return mHeight; }
 
 	private:
 		void createBackHDC();

@@ -2,6 +2,8 @@
 
 enum class eComponentType
 {
+	TRANSFORM,
+	SCRIPT,
 	END
 };
 

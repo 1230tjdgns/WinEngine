@@ -1,21 +1,24 @@
 #pragma once
-#include "Entity.h"
+#include "Scene.h"
 
 namespace WE
 {
-	class TestEntity : public Entity
+	class TestScene : public Scene
 	{
 	public:
-		TestEntity();
-		~TestEntity();
+		TestScene();
+		~TestScene();
 
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Render(const HDC hdc) override;
 
+		void OnEnter() override;
+		void OnExit() override;
+
 	private:
+
 	};
 }
-
 

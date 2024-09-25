@@ -1,12 +1,17 @@
 #include "GameCore.h"
 #include "Time.h"
 #include "Input.h"
+#include "SceneManager.h"
 
 namespace WE
 {
 	GameCore::GameCore() :
 		mHWnd(NULL),
-		mHdc(NULL)
+		mHdc(NULL),
+		mBackHdc(NULL),
+		mBitmap(NULL),
+		mWidth(0.f),
+		mHeight(0.f)
 	{
 	}
 
@@ -32,21 +37,25 @@ namespace WE
 
 		Time::Initialize();
 		Input::Initialize();
+		SceneManager::Initialize();
 	}
 
 	void GameCore::Update()
 	{
 		Time::Tick();
+		SceneManager::Update();
 	}
 
 	void GameCore::LateUpdate()
 	{
+		SceneManager::LateUpdate();
 	}
 
 	void GameCore::Render()
 	{
 		clearScreen();
 
+		SceneManager::Render(mBackHdc);
 		Time::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
@@ -54,10 +63,12 @@ namespace WE
 
 	void GameCore::Destroy()
 	{
+		SceneManager::Destroy();
 	}
 
 	void GameCore::Release()
 	{
+		SceneManager::Release();
 	}
 
 	void GameCore::createBackHDC()

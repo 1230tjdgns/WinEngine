@@ -8,13 +8,15 @@ namespace WE
 	public:
 		enum class eState
 		{
-			ALIVE,
+			ENABLE,
 			DISABLE,
-			DEAD
+			DESTROY
 		};
 
 	public:
-		Entity();
+		Entity(
+			const eLayerType& layer = eLayerType::NONE,
+			const eState& state = eState::ENABLE);
 		~Entity();
 
 		virtual void Initialize();
@@ -22,8 +24,61 @@ namespace WE
 		virtual void LateUpdate();
 		virtual void Render(const HDC hdc);
 
-		void SetLayerType(const eLayerType type) { mLayerType = type; }
-		eLayerType GetLayerType() const { return mLayerType; }
+		template<typename T>
+		T* AddComponent()
+		{
+			T* comp = new T;
+
+			eComponentType type = comp->GetType();
+			if (mComponents[(UINT)type] != nullptr)
+			{
+				delete comp;
+				return nullptr;
+			}
+			comp->SetOwner(this);
+			comp->Initialize();
+			mComponents[(UINT)type] = comp;
+			return comp;
+		}
+
+		template<typename T>
+		T* GetComponent()
+		{
+			T* resultComp = nullptr;
+			for (Component*& comp : mComponents)
+			{
+				resultComp = dynamic_cast<T*>(comp);
+				if (resultComp)
+				{
+					return resultComp;
+				}
+			}
+			return nullptr;
+		}
+
+		inline void Enable()
+		{
+			mState = eState::ENABLE;
+		}
+		inline void Disable()
+		{
+			mState = eState::DISABLE;
+		}
+		inline void Destroy()
+		{
+			mState = eState::DESTROY;
+		}
+		inline bool IsEnable() const
+		{
+			return mState == eState::ENABLE ? true : false;
+		}
+		inline bool IsDestroy() const
+		{
+			return mState == eState::DESTROY ? true : false;
+		}
+
+		inline void SetLayerType(const eLayerType type) { mLayerType = type; }
+		inline eLayerType GetLayerType() const { return mLayerType; }
 
 	private:
 		eState mState;

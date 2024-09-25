@@ -14,7 +14,12 @@ namespace WE
 		virtual void LateUpdate();
 		virtual void Render(const HDC hdc);
 
+		virtual void OnEnter();
+		virtual void OnExit();
+
 		void AddEntity(Entity* entity);
+
+		void RemoveDestroyedEntities();
 
 	private:
 		std::vector<Layer*> mLayers;

@@ -55,10 +55,33 @@ namespace WE
 		}
 	}
 
+	void Scene::OnEnter()
+	{
+	}
+
+	void Scene::OnExit()
+	{
+	}
+
 	void Scene::AddEntity(Entity* entity)
 	{
 		eLayerType type = entity->GetLayerType();
 
 		mLayers[(UINT)type]->AddEntity(entity);
+	}
+
+	void Scene::RemoveDestroyedEntities()
+	{
+		std::vector<Entity*> destroyedEntities;
+		for (Layer*& layer : mLayers)
+		{
+			layer->CollectDestroyedEntities(destroyedEntities);
+		}
+
+		for (Entity*& entity : destroyedEntities)
+		{
+			delete entity;
+			entity = nullptr;
+		}
 	}
 }

@@ -9,11 +9,11 @@ namespace WE
 		Tag();
 		~Tag();
 
-		void SetName(const std::wstring& name)
+		inline void SetName(const std::wstring& name)
 		{
 			this->name = name;
 		}
-		std::wstring GetName() const { return name; }
+		inline std::wstring GetName() const { return name; }
 
 	private:
 		std::wstring name;

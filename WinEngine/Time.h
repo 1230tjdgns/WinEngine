@@ -13,7 +13,7 @@ namespace WE
 		static void Tick();
 		static void Render(const HDC hdc);
 
-		static float GetDeltaTime() { return mDeltaTime; }
+		static inline float GetDeltaTime() { return mDeltaTime; }
 
 	private:
 		static LARGE_INTEGER mCpuFreq;

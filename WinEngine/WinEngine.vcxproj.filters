@@ -32,9 +32,6 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{6b87754a-2fd6-4a9d-acd1-410ff93dbd32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Components">
-      <UniqueIdentifier>{fd180237-caa6-41fb-b1f4-222604bf6543}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assets\Entities">
       <UniqueIdentifier>{8295da09-a9e3-44cb-8fe9-8621fe6f19bc}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,33 @@
     </Filter>
     <Filter Include="System\Input">
       <UniqueIdentifier>{8002bd9c-7552-479b-9b8f-9f10618cb259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers">
+      <UniqueIdentifier>{88054002-84bd-4e86-af18-d047501484cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scenes">
+      <UniqueIdentifier>{b7588283-c165-44a5-8fea-a3f873219dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\Loader">
+      <UniqueIdentifier>{c7603746-67cc-4a0d-a252-cc1182856ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\Global">
+      <UniqueIdentifier>{4dc1983d-bfd7-4df1-8633-8e2348c748e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\Math">
+      <UniqueIdentifier>{a4c51c59-20d0-4a72-b28c-4949a948f67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components">
+      <UniqueIdentifier>{15da83b7-909b-4fb6-8bba-85617e445e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Transform">
+      <UniqueIdentifier>{b6f7b641-9e44-4c0e-ba09-d87a1f8b1fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Script">
+      <UniqueIdentifier>{e35bf34f-b4bf-4d23-8e34-0ca0e3968955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scripts">
+      <UniqueIdentifier>{2e2b9fa9-8a0a-498d-89f8-74a18fb46ea8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +118,30 @@
     <ClInclude Include="Input.h">
       <Filter>System\Input</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoader.h">
+      <Filter>System\Common\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Assets\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>System\Common\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>System\Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>System\Component\Components\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>System\Component\Components\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScript.h">
+      <Filter>Assets\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinEngine.cpp" />
@@ -123,6 +171,24 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>System\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Assets\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>System\Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>System\Component\Components\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>System\Component\Components\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScript.cpp">
+      <Filter>Assets\Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

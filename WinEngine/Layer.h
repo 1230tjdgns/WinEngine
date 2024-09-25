@@ -17,6 +17,8 @@ namespace WE
 
 		void AddEntity(Entity* entity);
 
+		void CollectDestroyedEntities(std::vector<Entity*>& vec);
+
 	private:
 		std::vector<Entity*> mEntities;
 		eLayerType mType;
