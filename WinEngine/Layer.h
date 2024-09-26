@@ -13,11 +13,21 @@ namespace WE
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(const HDC hdc);
+		virtual void Render(const HDC& hdc);
 
 		void AddEntity(Entity* entity);
 
-		void CollectDestroyedEntities(std::vector<Entity*>& vec);
+		template<typename F>
+		void GetFilteredEntities(std::vector<Entity*>& vec, F func)
+		{
+			CopyIfVector(mEntities, vec, func);
+		}
+
+		template<typename F>
+		void EraseFilteredEntities(F func)
+		{
+			EraseVector(mEntities, func);
+		}
 
 	private:
 		std::vector<Entity*> mEntities;

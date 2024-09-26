@@ -22,7 +22,7 @@ namespace WE
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Render(const HDC hdc);
+		virtual void Render(const HDC& hdc);
 
 		template<typename T>
 		T* AddComponent()

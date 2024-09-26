@@ -12,8 +12,7 @@ namespace WE
 		static void Initialize();
 		static void Update();
 		static void LateUpdate();
-		static void Render(const HDC hdc);
-		static void Destroy();
+		static void Render(const HDC& hdc);
 		static void Release();
 
 		template<typename T>

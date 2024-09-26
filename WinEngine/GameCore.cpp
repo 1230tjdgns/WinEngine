@@ -1,7 +1,13 @@
 #include "GameCore.h"
+#include "GDIPManager.h"
 #include "Time.h"
 #include "Input.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
+#include "GC.h"
+#include "CameraManager.h"
+
+//#define USE_DIB
 
 namespace WE
 {
@@ -27,16 +33,20 @@ namespace WE
 		Destroy();
 	}
 
-	void GameCore::Initialize(HWND hWnd)
+	void GameCore::Initialize(const HWND hWnd)
 	{
 		mHWnd = hWnd;
 		mHdc = GetDC(mHWnd);
 
-		setWindowSize();
+		updateWindowSize();
 		createBackHDC();
 
+		GDIPManager::Initialize();
 		Time::Initialize();
 		Input::Initialize();
+		ResourceManager::Initialize();
+		GC::Initialize();
+		CameraManager::Initialize();
 		SceneManager::Initialize();
 	}
 
@@ -49,6 +59,7 @@ namespace WE
 	void GameCore::LateUpdate()
 	{
 		SceneManager::LateUpdate();
+		CameraManager::LateUpdate();
 	}
 
 	void GameCore::Render()
@@ -63,23 +74,49 @@ namespace WE
 
 	void GameCore::Destroy()
 	{
-		SceneManager::Destroy();
+		GC::Run();
 	}
 
 	void GameCore::Release()
 	{
+		CameraManager::Clear();
 		SceneManager::Release();
+		GC::Release();
+		ResourceManager::Release();
+		GDIPManager::Release();
+	}
+
+	void GameCore::UpdateWindow()
+	{
+		updateWindowSize();
+		createBackHDC();
+		CameraManager::SetResolution(Vector2(mWidth, mHeight));
 	}
 
 	void GameCore::createBackHDC()
 	{
 		mBackHdc = CreateCompatibleDC(mHdc);
+
+	#ifdef USE_DIB
+		BITMAPINFO info = {};
+		info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		info.bmiHeader.biWidth = mWidth;
+		info.bmiHeader.biHeight = -mHeight;
+		info.bmiHeader.biPlanes = 1;
+		info.bmiHeader.biBitCount = 32;
+		info.bmiHeader.biCompression = BI_RGB;
+		
+		void* pBits = nullptr;
+		
+		mBitmap = CreateDIBitmap(mHdc, &info.bmiHeader, DIB_RGB_COLORS, &pBits, NULL, 0);
+	#else
 		mBitmap = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
+	#endif
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBitmap);
 		DeleteObject(oldBitmap);
 	}
 
-	void GameCore::setWindowSize()
+	void GameCore::updateWindowSize()
 	{
 		RECT rect = {};
 		GetWindowRect(mHWnd, &rect);

@@ -44,9 +44,6 @@
     <Filter Include="System\Time">
       <UniqueIdentifier>{4de1529e-f064-44a9-81bf-ac7985236ae5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\Common\Headers\Utilities">
-      <UniqueIdentifier>{29a67902-12f7-4c29-8596-7a4fce18a027}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Input">
       <UniqueIdentifier>{8002bd9c-7552-479b-9b8f-9f10618cb259}</UniqueIdentifier>
     </Filter>
@@ -77,12 +74,48 @@
     <Filter Include="Assets\Scripts">
       <UniqueIdentifier>{2e2b9fa9-8a0a-498d-89f8-74a18fb46ea8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\GC">
+      <UniqueIdentifier>{157a384a-4b4d-497f-887c-9b31508859db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\Utilities">
+      <UniqueIdentifier>{29a67902-12f7-4c29-8596-7a4fce18a027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Resource">
+      <UniqueIdentifier>{f92efa1b-4ee0-4d7a-bce8-fab391f19c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Resource\Texture">
+      <UniqueIdentifier>{87625d76-b617-43c3-90fd-c717a34a8e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers\ResourceManager">
+      <UniqueIdentifier>{75aa3362-644e-43fe-b1d8-d504f8c229b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers\SceneManager">
+      <UniqueIdentifier>{69f4bce5-ec05-46f0-9fa1-eae5083d5cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일\Image">
+      <UniqueIdentifier>{21aecd95-3994-45c4-a1e1-6274df26864b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Sprite">
+      <UniqueIdentifier>{4a78cc80-704c-42b1-95c5-df81b3fb0549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Camera">
+      <UniqueIdentifier>{e691a40e-7df4-4b09-a8a1-162d836b1c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\CoreFunction">
+      <UniqueIdentifier>{83f6d7d1-cb2b-4139-b2d5-b9209cc6220d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers\GDI+">
+      <UniqueIdentifier>{d7d91444-aa74-4a5c-a66e-1413dfe1ca6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers\CameraManager">
+      <UniqueIdentifier>{9f001142-6cc6-440a-bfe4-2828937f9de2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>System\Common\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="WinResource.h">
       <Filter>System\Common\Headers</Filter>
     </ClInclude>
     <ClInclude Include="GameCore.h">
@@ -113,13 +146,10 @@
       <Filter>System\Time</Filter>
     </ClInclude>
     <ClInclude Include="CommonFunctions.h">
-      <Filter>System\Common\Headers\Utilities</Filter>
+      <Filter>System\Common\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>System\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>System\Managers</Filter>
     </ClInclude>
     <ClInclude Include="SceneLoader.h">
       <Filter>System\Common\Loader</Filter>
@@ -141,6 +171,39 @@
     </ClInclude>
     <ClInclude Include="TestScript.h">
       <Filter>Assets\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="GC.h">
+      <Filter>System\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>System\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>System\Managers\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>System\Managers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>System\Component\Components\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceLoader.h">
+      <Filter>System\Common\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>System\Component\Components\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreFunction.h">
+      <Filter>System\Common\CoreFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="GDIPManager.h">
+      <Filter>System\Managers\GDI+</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>System\Managers\CameraManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,9 +235,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>System\Input</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>System\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>Assets\Scenes</Filter>
     </ClCompile>
@@ -190,5 +250,43 @@
     <ClCompile Include="TestScript.cpp">
       <Filter>Assets\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="GC.cpp">
+      <Filter>System\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>System\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>System\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>System\Managers\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>System\Managers\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>System\Component\Components\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>System\Component\Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreFunction.cpp">
+      <Filter>System\Common\CoreFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="GDIPManager.cpp">
+      <Filter>System\Managers\GDI+</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>System\Managers\CameraManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\image\flycow.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\Snipe.jpg">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
   </ItemGroup>
 </Project>

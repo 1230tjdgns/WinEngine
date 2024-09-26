@@ -21,6 +21,15 @@
 #include <set>
 #include <unordered_set>
 
+// 그래픽
+#include <wingdi.h>
+#include <gdiplus.h>
+
+// 라이브러리
+#pragma comment (lib, "winmm.lib")
+#pragma comment (lib, "gdiplus.lib")
+#pragma comment (lib, "msimg32.lib")
+
 // 커스텀 헤더
 #include "Enums.h"
 #include "CommonFunctions.h"
@@ -30,8 +39,3 @@
 #define WINCLASS	L"WinClass"
 #define WINTITLE	L"WinEngine"
 
-// 전역
-namespace WE
-{
-	extern class GameCore core;
-}

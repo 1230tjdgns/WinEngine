@@ -47,7 +47,7 @@ namespace WE
 		}
 	}
 
-	void Scene::Render(const HDC hdc)
+	void Scene::Render(const HDC& hdc)
 	{
 		for (Layer*& layer : mLayers)
 		{
@@ -68,20 +68,5 @@ namespace WE
 		eLayerType type = entity->GetLayerType();
 
 		mLayers[(UINT)type]->AddEntity(entity);
-	}
-
-	void Scene::RemoveDestroyedEntities()
-	{
-		std::vector<Entity*> destroyedEntities;
-		for (Layer*& layer : mLayers)
-		{
-			layer->CollectDestroyedEntities(destroyedEntities);
-		}
-
-		for (Entity*& entity : destroyedEntities)
-		{
-			delete entity;
-			entity = nullptr;
-		}
 	}
 }

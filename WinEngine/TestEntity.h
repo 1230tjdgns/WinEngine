@@ -12,7 +12,7 @@ namespace WE
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Render(const HDC hdc) override;
+		void Render(const HDC& hdc) override;
 
 	private:
 	};

@@ -13,7 +13,7 @@ namespace WE
 
 		void Run();
 
-		void Initialize(HWND hWnd);
+		void Initialize(const HWND hWnd);
 		void Update();
 		void LateUpdate();
 		void Render();
@@ -24,9 +24,13 @@ namespace WE
 		inline float GetWidth() const { return mWidth; }
 		inline float GetHeight() const { return mHeight; }
 
+		inline HDC GetHDC() const { return mHdc; }
+
+		void UpdateWindow();
+
 	private:
 		void createBackHDC();
-		void setWindowSize();
+		void updateWindowSize();
 		void clearScreen();
 
 	private:

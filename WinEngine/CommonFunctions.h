@@ -27,4 +27,33 @@ namespace WE
 			}
 		}
 	}
+
+	template<typename T, typename F>
+	void CopyIfVector(std::vector<T>& vec1, std::vector<T>& vec2, F func)
+	{
+		typedef std::vector<T>::iterator TIter;
+		for (T& ele : vec1)
+		{
+			if (func(ele))
+			{
+				vec2.push_back(ele);
+			}
+		}
+	}
+
+	static void ToUpper(std::wstring& str)
+	{
+		for (TCHAR& ch : str)
+		{
+			ch = towupper(ch);
+		}
+	}
+
+	static void ToLower(std::wstring& str)
+	{
+		for (TCHAR& ch : str)
+		{
+			ch = towlower(ch);
+		}
+	}
 }

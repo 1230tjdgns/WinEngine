@@ -1,4 +1,4 @@
-﻿#include "resource.h"
+﻿#include "WinResource.h"
 #include "framework.h"
 #include "GameCore.h"
 
@@ -39,10 +39,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             {
                 break;
             }
+            else if (msg.message == WM_SIZE)
+            {
+                core.UpdateWindow();
+            }
 
             TranslateMessage(&msg);
             DispatchMessage(&msg);
-
         }
         else
         {
@@ -100,6 +103,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_SIZE:
+        core.UpdateWindow();
+        break;
     case WM_KEYDOWN:
         if(wParam == VK_ESCAPE)
             PostQuitMessage(0);

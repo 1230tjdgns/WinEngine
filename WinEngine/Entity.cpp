@@ -54,7 +54,7 @@ namespace WE
 		}
 	}
 
-	void Entity::Render(const HDC hdc)
+	void Entity::Render(const HDC& hdc)
 	{
 		for (Component*& comp : mComponents)
 		{

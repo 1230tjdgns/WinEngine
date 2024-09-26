@@ -143,17 +143,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="CoreFunction.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GC.h" />
+    <ClInclude Include="GDIPManager.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="WinResource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="SceneManager.h" />
@@ -166,22 +176,35 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="CoreFunction.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GC.cpp" />
+    <ClCompile Include="GDIPManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Script.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tag.cpp" />
     <ClCompile Include="TestEntity.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TestScript.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WinEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\image\flycow.bmp" />
+    <Image Include="res\image\Snipe.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

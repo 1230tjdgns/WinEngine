@@ -24,7 +24,7 @@ namespace WE
 	{
 	}
 
-	void Component::Render(const HDC hdc)
+	void Component::Render(const HDC& hdc)
 	{
 	}
 }

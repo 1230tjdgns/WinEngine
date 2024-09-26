@@ -52,7 +52,7 @@ namespace WE
 		}
 	}
 
-	void Layer::Render(const HDC hdc)
+	void Layer::Render(const HDC& hdc)
 	{
 		for (Entity*& ent : mEntities)
 		{
@@ -64,18 +64,5 @@ namespace WE
 	void Layer::AddEntity(Entity* entity)
 	{
 		mEntities.push_back(entity);
-	}
-
-	void Layer::CollectDestroyedEntities(std::vector<Entity*>& vec)
-	{
-		for (Entity*& ent : mEntities)
-		{
-			if (ent->IsDestroy())
-			{
-				vec.push_back(ent);
-			}
-		}
-
-		EraseVector(mEntities, [](Entity* ent) { return ent->IsDestroy(); });
 	}
 }

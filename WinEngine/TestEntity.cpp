@@ -21,7 +21,7 @@ namespace WE
 	{
 		Entity::LateUpdate();
 	}
-	void TestEntity::Render(const HDC hdc)
+	void TestEntity::Render(const HDC& hdc)
 	{
 		Entity::Render(hdc);
 	}

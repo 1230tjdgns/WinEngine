@@ -34,16 +34,10 @@ namespace WE
 			mActiveScene->LateUpdate();
 	}
 
-	void SceneManager::Render(const HDC hdc)
+	void SceneManager::Render(const HDC& hdc)
 	{
 		if (mActiveScene)
 			mActiveScene->Render(hdc);
-	}
-
-	void SceneManager::Destroy()
-	{
-		if (mActiveScene)
-			mActiveScene->RemoveDestroyedEntities();
 	}
 
 	void SceneManager::Release()

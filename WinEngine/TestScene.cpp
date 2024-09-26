@@ -31,7 +31,7 @@ namespace WE
 		Scene::LateUpdate();
 	}
 
-	void TestScene::Render(const HDC hdc)
+	void TestScene::Render(const HDC& hdc)
 	{
 		Scene::Render(hdc);
 

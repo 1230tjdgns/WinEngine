@@ -4,6 +4,11 @@
 #include "Entity.h"
 #include "Time.h"
 #include "Global.h"
+#include "Sprite.h"
+#include "ResourceManager.h"
+#include "Texture.h"
+#include "Camera.h"
+#include "CameraManager.h"
 
 namespace WE
 {
@@ -20,6 +25,14 @@ namespace WE
 	{
 		tr = GetOwner()->GetComponent<Transform>();
 		tr->SetPosition(Vector2(200, 200));
+
+		Sprite* sp = GetOwner()->AddComponent<Sprite>();
+		Texture* tex = ResourceManager::Get<Texture>(L"snipe");
+		sp->SetTexture(tex);
+
+		Camera* cam = GetOwner()->AddComponent<Camera>();
+		cam->SetTarget(GetOwner());
+		CameraManager::SetTargetCamera(cam);
 	}
 
 	void TestScript::Update()
@@ -54,11 +67,17 @@ namespace WE
 	{
 	}
 
-	void TestScript::Render(const HDC hdc)
+	void TestScript::Render(const HDC& hdc)
 	{
 		Vector2 pos = tr->GetPosition();
 
-		Rectangle(hdc, pos.x - 10.f, pos.y - 10.f, pos.x + 10.f, pos.y + 10.f);
+		for (int i = 0; i < 1; i++)
+		{
+			for (int j = 0; j < 1; j++)
+			{
+				Rectangle(hdc, (pos.x - 10.f) + (30 * i) , (pos.y - 10.f) + (30 * j), (pos.x + 10.f) + (30 * i), (pos.y + 10.f) + (30 * j));
+			}
+		}
 	}
 
 	void TestScript::OnCollisionEnter()

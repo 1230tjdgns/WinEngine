@@ -36,7 +36,7 @@ namespace WE
 	{
 	}
 
-	void Transform::Render(const HDC hdc)
+	void Transform::Render(const HDC& hdc)
 	{
 	}
 }
