@@ -11,10 +11,10 @@ namespace WE
 		Transform(const float& x, const float& y);
 		~Transform();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(const HDC& hdc) override;
+		void OnInitialize() override;
+		void OnUpdate() override;
+		void OnLateUpdate() override;
+		void OnRender(const HDC& hdc) override;
 
 		inline void SetPosition(const Vector2 pos) { mPosition = pos; }
 		inline void SetPosition(const float x, const float y)

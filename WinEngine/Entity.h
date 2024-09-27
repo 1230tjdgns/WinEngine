@@ -19,13 +19,18 @@ namespace WE
 			const eState& state = eState::ENABLE);
 		~Entity();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render(const HDC& hdc);
+		void Initialize();
+		void Update();
+		void LateUpdate();
+		void Render(const HDC& hdc);
+
+		virtual void OnInitialize() = 0;
+		virtual void OnUpdate() = 0;
+		virtual void OnLateUpdate() = 0;
+		virtual void OnRender(const HDC& hdc) = 0;
 
 		template<typename T>
-		T* AddComponent()
+		T* AddComponent(bool LateInit = false)
 		{
 			T* comp = new T;
 
@@ -36,7 +41,8 @@ namespace WE
 				return nullptr;
 			}
 			comp->SetOwner(this);
-			comp->Initialize();
+			if(LateInit == false)
+				comp->Initialize();
 			mComponents[(UINT)type] = comp;
 			return comp;
 		}

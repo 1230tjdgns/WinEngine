@@ -9,10 +9,10 @@ namespace WE
 		Sprite();
 		~Sprite();
 
-		void Initialize()  override;
-		void Update()  override;
-		void LateUpdate()  override;
-		void Render(const HDC& hdc) override;
+		void OnInitialize()  override;
+		void OnUpdate()  override;
+		void OnLateUpdate()  override;
+		void OnRender(const HDC& hdc) override;
 
 		inline void SetTexture(class Texture* const texture) { mTexture = texture; }
 		inline class Texture* GetTexture() const { return mTexture; }
@@ -44,6 +44,8 @@ namespace WE
 		Vector2 mSpritePos;
 		Vector2 mOffset;
 		Vector2 mScale;
+
+		float ang;
 	};
 }
 

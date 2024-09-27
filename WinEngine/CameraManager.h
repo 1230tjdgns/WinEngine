@@ -27,6 +27,8 @@ namespace WE
 		static Vector2 mResolution;
 
 		static Vector2 mDistance;
+
+		static Vector2 mPosition;
 	};
 }
 

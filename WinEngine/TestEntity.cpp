@@ -1,28 +1,31 @@
 #include "TestEntity.h"
+#include "TestScript.h"
 
 namespace WE
 {
 	TestEntity::TestEntity()
 	{
+		AddComponent<TestScript>(true);
 	}
 
 	TestEntity::~TestEntity()
 	{
 	}
-	void TestEntity::Initialize()
+
+	void TestEntity::OnInitialize()
 	{
-		Entity::Initialize();
 	}
-	void TestEntity::Update()
+
+	void TestEntity::OnUpdate()
 	{
-		Entity::Update();
 	}
-	void TestEntity::LateUpdate()
+
+	void TestEntity::OnLateUpdate()
 	{
-		Entity::LateUpdate();
 	}
-	void TestEntity::Render(const HDC& hdc)
+
+	void TestEntity::OnRender(const HDC& hdc)
 	{
-		Entity::Render(hdc);
 	}
+
 }

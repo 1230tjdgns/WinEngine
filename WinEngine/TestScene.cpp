@@ -1,7 +1,7 @@
 #include "TestScene.h"
 #include "TestEntity.h"
+#include "TestEntity2.h"
 #include "Global.h"
-#include "TestScript.h"
 
 namespace WE
 {
@@ -13,29 +13,23 @@ namespace WE
 	{
 	}
 
-	void TestScene::Initialize()
+	void TestScene::OnInitialize()
 	{
-		Scene::Initialize();
-
 		TestEntity* test = Global::CreateEntity<TestEntity>(eLayerType::NONE);
-		test->AddComponent<TestScript>();
+		TestEntity2* test2 = Global::CreateEntity<TestEntity2>(eLayerType::NONE);
 	}
 
-	void TestScene::Update()
+	void TestScene::OnUpdate()
 	{
-		Scene::Update();
 	}
 
-	void TestScene::LateUpdate()
+	void TestScene::OnLateUpdate()
 	{
-		Scene::LateUpdate();
 	}
 
-	void TestScene::Render(const HDC& hdc)
+	void TestScene::OnRender(const HDC& hdc)
 	{
-		Scene::Render(hdc);
-
-		TOut(hdc, 10, 50, L"TEST");
+		TOut(hdc, 10, 50, GetName());
 	}
 
 	void TestScene::OnEnter()

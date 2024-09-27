@@ -6,6 +6,7 @@ namespace WE
 	Texture::Texture() :
 		Resource(eResourceType::TEXTURE),
 		mBitmap(NULL),
+		mMask(NULL),
 		mHdc(NULL),
 		mType(eTextureType::BMP),
 		mWidth(0.f),
@@ -35,6 +36,10 @@ namespace WE
 		{
 			loadJPG(path);
 		}
+		else
+		{
+			assert(false);
+		}
 
 		return S_OK;
 	}
@@ -56,6 +61,11 @@ namespace WE
 		mWidth = info.bmWidth;
 		mHeight = info.bmHeight;
 		mAlpha = info.bmBitsPixel == 32 ? true : false;
+
+		if (mAlpha == false)
+		{
+			generateMask();
+		}
 	}
 
 	void Texture::loadPNG(const std::wstring& path)
@@ -75,6 +85,36 @@ namespace WE
 		loadPNG(path);
 
 		mType = eTextureType::JPG;
+	}
+
+	void Texture::generateMask()
+	{
+		BITMAP bitmap = {};
+		GetObject(mBitmap, sizeof(BITMAP), &bitmap);
+
+		std::unique_ptr<BITMAPINFO[]> info { new BITMAPINFO[2] };
+		info[0].bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		info[0].bmiHeader.biWidth = mWidth;
+		info[0].bmiHeader.biHeight = mHeight;
+		info[0].bmiHeader.biPlanes = 1;
+		info[0].bmiHeader.biBitCount = bitmap.bmBitsPixel;
+		info[0].bmiHeader.biCompression = BI_RGB;
+
+		size_t bytePerPixel = bitmap.bmBitsPixel / 8;
+		size_t dataSize = bitmap.bmWidthBytes * bitmap.bmHeight;
+		std::unique_ptr<BYTE[]> pixels { new BYTE[dataSize] };
+
+		HDC hdc = GetDC(NULL);
+		GetDIBits(hdc, mBitmap, 0, info[0].bmiHeader.biHeight, pixels.get(), &info[0], DIB_RGB_COLORS);
+
+		for (size_t i = 0; i < bitmap.bmWidth * bitmap.bmHeight * bytePerPixel; i+= bytePerPixel)
+		{
+			int b = (int)pixels[i];
+			int g = (int)pixels[i+1];
+			int r = (int)pixels[i+2];
+		}
+
+		ReleaseDC(NULL, hdc);
 	}
 
 }

@@ -9,10 +9,10 @@ namespace WE
 		Script();
 		~Script();
 
-		virtual void Initialize() = 0;
-		virtual void Update() = 0;
-		virtual void LateUpdate() = 0;
-		virtual void Render(const HDC& hdc) = 0;
+		virtual void OnInitialize() = 0;
+		virtual void OnUpdate() = 0;
+		virtual void OnLateUpdate() = 0;
+		virtual void OnRender(const HDC& hdc) = 0;
 
 		virtual void OnCollisionEnter() = 0;
 		virtual void OnCollisionStay() = 0;

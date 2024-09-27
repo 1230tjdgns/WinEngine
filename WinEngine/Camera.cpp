@@ -16,27 +16,27 @@ namespace WE
 	{
 	}
 
-	void Camera::Initialize()
+	void Camera::OnInitialize()
 	{
 	}
 
-	void Camera::Update()
+	void Camera::OnUpdate()
 	{
 	}
 
-	void Camera::LateUpdate()
+	void Camera::OnLateUpdate()
 	{
 		if (mTarget)
 		{
-			mPosition = mTarget->GetComponent<Transform>()->GetPosition();
+			mPosition = mTarget->GetComponent<Transform>()->GetPosition() + mOffset;
 		}
 		else
 		{
-			mPosition = Vector2::Zero;
+			mPosition = Vector2::Zero + mOffset;
 		}
 	}
 
-	void Camera::Render(const HDC& hdc)
+	void Camera::OnRender(const HDC& hdc)
 	{
 	}
 

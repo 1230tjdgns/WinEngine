@@ -7,7 +7,7 @@ namespace WE
 {
 	static float Radian(const float degree)
 	{
-		return (degree / 180.f) * PI;
+		return (PI / 180.f) * degree;
 	}
 
 	struct Vector2
@@ -111,18 +111,30 @@ namespace WE
 
 		Vector2& Normalize()
 		{
-			x /= this->Length();
-			y /= this->Length();
+			float len = this->Length();
+			x /= len;
+			y /= len;
 			return *this;
 		}
 
-		void Rotate(const float degree)
+		static Vector2 Rotate(Vector2 vec, const float degree)
 		{
 			float radian = Radian(degree);
-			Vector2 normal = this->Normalize();
+			//vec.Normalize();
 
-			x = cosf(radian) * normal.x - sinf(radian) * normal.y;
-			y = sinf(radian) * normal.x + cosf(radian) * normal.y;
+			Vector2 result;
+
+			result.x = (cosf(radian) * vec.x) - (sinf(radian) * vec.y);
+			result.y = (sinf(radian) * vec.x) + (cosf(radian) * vec.y);
+
+			if (fabs(result.x) < 1e-6 && (long)degree % 90 == 0) {
+				result.x = 0;
+			}
+			if (fabs(result.y) < 1e-6 && (long)degree % 90 == 0) {
+				result.y = 0;
+			}
+
+			return result;
 		}
 
 		static Vector2 Zero;

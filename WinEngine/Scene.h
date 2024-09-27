@@ -9,10 +9,15 @@ namespace WE
 		Scene();
 		~Scene();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render(const HDC& hdc);
+		void Initialize();
+		void Update();
+		void LateUpdate();
+		void Render(const HDC& hdc);
+
+		virtual void OnInitialize() = 0;
+		virtual void OnUpdate() = 0;
+		virtual void OnLateUpdate() = 0;
+		virtual void OnRender(const HDC& hdc) = 0;
 
 		virtual void OnEnter();
 		virtual void OnExit();

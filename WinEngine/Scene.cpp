@@ -29,6 +29,7 @@ namespace WE
 		{
 			layer->Initialize();
 		}
+		OnInitialize();
 	}
 
 	void Scene::Update()
@@ -37,6 +38,7 @@ namespace WE
 		{
 			layer->Update();
 		}
+		OnUpdate();
 	}
 
 	void Scene::LateUpdate()
@@ -45,6 +47,7 @@ namespace WE
 		{
 			layer->LateUpdate();
 		}
+		OnLateUpdate();
 	}
 
 	void Scene::Render(const HDC& hdc)
@@ -53,6 +56,7 @@ namespace WE
 		{
 			layer->Render(hdc);
 		}
+		OnRender(hdc);
 	}
 
 	void Scene::OnEnter()

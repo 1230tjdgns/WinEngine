@@ -1,12 +1,14 @@
 #include "CameraManager.h"
 #include "Camera.h"
 #include "CoreFunction.h"
+#include "Entity.h"
 
 namespace WE
 {
 	Camera* CameraManager::mTargetCamera = nullptr;
 	Vector2 CameraManager::mResolution = Vector2::Zero;
 	Vector2 CameraManager::mDistance = Vector2::Zero;
+	Vector2 CameraManager::mPosition = Vector2::Zero;
 }
 
 namespace WE
@@ -28,12 +30,17 @@ namespace WE
 	{
 		if (mTargetCamera)
 		{
-			mDistance = mTargetCamera->GetPosition() - (mResolution / 2);
+			if (mTargetCamera->GetOwner()->IsDestroy())
+			{
+				mTargetCamera = nullptr;
+			}
+			else
+			{
+				mPosition = mTargetCamera->GetPosition();
+			}
 		}
-		else
-		{
-			mDistance = Vector2::Zero - (mResolution / 2);
-		}
+
+		mDistance = mPosition - (mResolution / 2);
 	}
 
 	void CameraManager::Clear()

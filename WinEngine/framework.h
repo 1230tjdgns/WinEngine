@@ -20,6 +20,7 @@
 #include <string>
 #include <set>
 #include <unordered_set>
+#include <memory>
 
 // 그래픽
 #include <wingdi.h>

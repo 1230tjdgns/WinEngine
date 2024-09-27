@@ -21,10 +21,10 @@ namespace WE
 	{
 	}
 
-	void TestScript::Initialize()
+	void TestScript::OnInitialize()
 	{
 		tr = GetOwner()->GetComponent<Transform>();
-		tr->SetPosition(Vector2(200, 200));
+		tr->SetPosition(Vector2(-400, 0));
 
 		Sprite* sp = GetOwner()->AddComponent<Sprite>();
 		Texture* tex = ResourceManager::Get<Texture>(L"snipe");
@@ -35,7 +35,7 @@ namespace WE
 		CameraManager::SetTargetCamera(cam);
 	}
 
-	void TestScript::Update()
+	void TestScript::OnUpdate()
 	{
 		Vector2 pos = tr->GetPosition();
 		if (Input::IsKeyStay(VK_LEFT))
@@ -57,17 +57,22 @@ namespace WE
 
 		tr->SetPosition(pos);
 
-		if (Input::IsKeyDown(VK_SPACE))
+		if (Input::IsKeyDown('D'))
 		{
 			Global::Destroy(GetOwner());
 		}
+		if (Input::IsKeyDown('Z'))
+		{
+			Camera* cam = GetOwner()->GetComponent<Camera>();
+			CameraManager::SetTargetCamera(cam);
+		}
 	}
 
-	void TestScript::LateUpdate()
+	void TestScript::OnLateUpdate()
 	{
 	}
 
-	void TestScript::Render(const HDC& hdc)
+	void TestScript::OnRender(const HDC& hdc)
 	{
 		Vector2 pos = tr->GetPosition();
 

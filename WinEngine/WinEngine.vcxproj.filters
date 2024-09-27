@@ -110,6 +110,18 @@
     <Filter Include="System\Managers\CameraManager">
       <UniqueIdentifier>{9f001142-6cc6-440a-bfe4-2828937f9de2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Entities\TestEntity2">
+      <UniqueIdentifier>{2db4551c-2873-4a56-951a-690e5fa6fc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scripts\TestScript2">
+      <UniqueIdentifier>{047c3883-c69a-4db5-8d76-60bf528c8d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scripts\TestScript">
+      <UniqueIdentifier>{7a9ac868-240a-43fb-bef5-8f2e896b894a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Entities\TestEntity">
+      <UniqueIdentifier>{9d981229-1afe-4803-b72a-eb660577956c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -139,9 +151,6 @@
     <ClInclude Include="Layer.h">
       <Filter>System\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="TestEntity.h">
-      <Filter>Assets\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>System\Time</Filter>
     </ClInclude>
@@ -168,9 +177,6 @@
     </ClInclude>
     <ClInclude Include="Script.h">
       <Filter>System\Component\Components\Script</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScript.h">
-      <Filter>Assets\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="GC.h">
       <Filter>System\GC</Filter>
@@ -205,6 +211,18 @@
     <ClInclude Include="CameraManager.h">
       <Filter>System\Managers\CameraManager</Filter>
     </ClInclude>
+    <ClInclude Include="TestEntity2.h">
+      <Filter>Assets\Entities\TestEntity2</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScript2.h">
+      <Filter>Assets\Scripts\TestScript2</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScript.h">
+      <Filter>Assets\Scripts\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEntity.h">
+      <Filter>Assets\Entities\TestEntity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinEngine.cpp" />
@@ -226,9 +244,6 @@
     <ClCompile Include="Layer.cpp">
       <Filter>System\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="TestEntity.cpp">
-      <Filter>Assets\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>System\Time</Filter>
     </ClCompile>
@@ -246,9 +261,6 @@
     </ClCompile>
     <ClCompile Include="Script.cpp">
       <Filter>System\Component\Components\Script</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScript.cpp">
-      <Filter>Assets\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="GC.cpp">
       <Filter>System\GC</Filter>
@@ -280,12 +292,48 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>System\Managers\CameraManager</Filter>
     </ClCompile>
+    <ClCompile Include="TestEntity2.cpp">
+      <Filter>Assets\Entities\TestEntity2</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScript2.cpp">
+      <Filter>Assets\Scripts\TestScript2</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScript.cpp">
+      <Filter>Assets\Scripts\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="TestEntity.cpp">
+      <Filter>Assets\Entities\TestEntity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\image\Snipe.jpg">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\plgblt.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\mask.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\cowmask.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\cowmask2.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\flycow2.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\pixels.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
+    <Image Include="res\image\pixel.bmp">
+      <Filter>리소스 파일\Image</Filter>
+    </Image>
     <Image Include="res\image\flycow.bmp">
       <Filter>리소스 파일\Image</Filter>
     </Image>
-    <Image Include="res\image\Snipe.jpg">
+    <Image Include="res\image\full.bmp">
       <Filter>리소스 파일\Image</Filter>
     </Image>
   </ItemGroup>

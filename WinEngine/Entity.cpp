@@ -34,6 +34,7 @@ namespace WE
 			if(comp != nullptr)
 				comp->Initialize();
 		}
+		OnInitialize();
 	}
 
 	void Entity::Update()
@@ -43,6 +44,7 @@ namespace WE
 			if (comp != nullptr)
 				comp->Update();	
 		}
+		OnUpdate();
 	}
 
 	void Entity::LateUpdate()
@@ -52,6 +54,7 @@ namespace WE
 			if (comp != nullptr)
 				comp->LateUpdate();
 		}
+		OnLateUpdate();
 	}
 
 	void Entity::Render(const HDC& hdc)
@@ -61,5 +64,6 @@ namespace WE
 			if (comp != nullptr)
 				comp->Render(hdc);
 		}
+		OnRender(hdc);
 	}
 }

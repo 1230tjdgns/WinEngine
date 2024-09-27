@@ -9,10 +9,10 @@ namespace WE
 		Camera();
 		~Camera();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(const HDC& hdc) override;
+		void OnInitialize() override;
+		void OnUpdate() override;
+		void OnLateUpdate() override;
+		void OnRender(const HDC& hdc) override;
 
 		void SetTarget(class Entity* const entity) { mTarget = entity; }
 		void ClearTarget() { mTarget = nullptr; }

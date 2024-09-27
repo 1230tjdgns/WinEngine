@@ -162,6 +162,8 @@
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestEntity2.h" />
+    <ClInclude Include="TestScript2.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="WinResource.h" />
     <ClInclude Include="Scene.h" />
@@ -195,15 +197,25 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tag.cpp" />
     <ClCompile Include="TestEntity.cpp" />
+    <ClCompile Include="TestEntity2.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TestScript.cpp" />
+    <ClCompile Include="TestScript2.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WinEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\image\cowmask.bmp" />
+    <Image Include="res\image\cowmask2.bmp" />
     <Image Include="res\image\flycow.bmp" />
+    <Image Include="res\image\flycow2.bmp" />
+    <Image Include="res\image\full.bmp" />
+    <Image Include="res\image\mask.bmp" />
+    <Image Include="res\image\pixel.bmp" />
+    <Image Include="res\image\pixels.bmp" />
+    <Image Include="res\image\plgblt.bmp" />
     <Image Include="res\image\Snipe.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

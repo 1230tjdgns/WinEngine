@@ -6,13 +6,18 @@ namespace WE
 	class Component : public Tag
 	{
 	public:
-		Component(eComponentType type);
+		Component(const eComponentType type);
 		~Component();
 
-		virtual void Initialize() = 0;
-		virtual void Update() = 0;
-		virtual void LateUpdate() = 0;
-		virtual void Render(const HDC& hdc) = 0;
+		void Initialize();
+		void Update();
+		void LateUpdate();
+		void Render(const HDC& hdc);
+
+		virtual void OnInitialize() = 0;
+		virtual void OnUpdate() = 0;
+		virtual void OnLateUpdate() = 0;
+		virtual void OnRender(const HDC& hdc) = 0;
 
 		inline eComponentType GetType() const { return mType; }
 
@@ -25,6 +30,8 @@ namespace WE
 	private:
 		eComponentType mType;
 		class Entity* mOwner;
+
+		bool mInitialized;
 	};
 }
 

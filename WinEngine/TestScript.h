@@ -9,10 +9,10 @@ namespace WE
 		TestScript();
 		~TestScript();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(const HDC& hdc) override;
+		void OnInitialize() override;
+		void OnUpdate() override;
+		void OnLateUpdate() override;
+		void OnRender(const HDC& hdc) override;
 
 		void OnCollisionEnter() override;
 		void OnCollisionStay() override;

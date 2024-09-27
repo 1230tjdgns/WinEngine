@@ -2,9 +2,10 @@
 
 namespace WE
 {
-	Component::Component(eComponentType type) :
+	Component::Component(const eComponentType type) :
 		mType(type),
-		mOwner(nullptr)
+		mOwner(nullptr),
+		mInitialized(false)
 	{
 	}
 
@@ -14,17 +15,24 @@ namespace WE
 
 	void Component::Initialize()
 	{
+		mInitialized = true;
+		OnInitialize();
 	}
 
 	void Component::Update()
 	{
+		if (mInitialized == false)
+			Initialize();
+		OnUpdate();
 	}
 
 	void Component::LateUpdate()
 	{
+		OnLateUpdate();
 	}
 
 	void Component::Render(const HDC& hdc)
 	{
+		OnRender(hdc);
 	}
 }

@@ -24,19 +24,19 @@ namespace WE
 	{
 	}
 
-	void Transform::Initialize()
+	void Transform::OnInitialize()
 	{
 	}
 
-	void Transform::Update()
+	void Transform::OnUpdate()
 	{
 	}
 
-	void Transform::LateUpdate()
+	void Transform::OnLateUpdate()
 	{
 	}
 
-	void Transform::Render(const HDC& hdc)
+	void Transform::OnRender(const HDC& hdc)
 	{
 	}
 }
