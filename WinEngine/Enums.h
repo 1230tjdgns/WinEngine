@@ -6,6 +6,8 @@ enum class eComponentType
 	SCRIPT,
 	CAMERA,
 	SPRITE,
+	ANIMATOR,
+	RENDERER,
 	END
 };
 

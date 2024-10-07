@@ -7,7 +7,7 @@ namespace WE
 	{
 	public:
 		Component(const eComponentType type);
-		~Component();
+		virtual ~Component();
 
 		void Initialize();
 		void Update();

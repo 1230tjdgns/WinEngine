@@ -9,7 +9,7 @@ namespace WE
 		Texture();
 		~Texture();
 
-		HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Load(const std::wstring& path) override;
 		// GDI
 		inline eTextureType GetTextureType() const { return mType; }
 		HDC GetHDC() const { return mHdc; }
@@ -21,13 +21,6 @@ namespace WE
 		float GetHeight() const { return mHeight; }
 
 		HBITMAP GetMask() { return NULL; }
-	private:
-		void loadBMP(const std::wstring& path);
-		void loadPNG(const std::wstring& path);
-		void loadJPG(const std::wstring& path);
-
-		void generateMask();
-
 	private:
 		HBITMAP mBitmap;
 		HBITMAP mMask;

@@ -17,7 +17,7 @@ namespace WE
 		Entity(
 			const eLayerType& layer = eLayerType::NONE,
 			const eState& state = eState::ENABLE);
-		~Entity();
+		virtual ~Entity();
 
 		void Initialize();
 		void Update();

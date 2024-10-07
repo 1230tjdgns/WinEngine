@@ -7,7 +7,7 @@ namespace WE
 	{
 	public:
 		Resource(eResourceType type);
-		~Resource();
+		virtual ~Resource();
 
 		virtual HRESULT Load(const std::wstring& path) = 0;
 

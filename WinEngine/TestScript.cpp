@@ -9,6 +9,8 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "CameraManager.h"
+#include "Renderer.h"
+#include "Animator.h"
 
 namespace WE
 {
@@ -26,33 +28,45 @@ namespace WE
 		tr = GetOwner()->GetComponent<Transform>();
 		tr->SetPosition(Vector2(-400, 0));
 
-		Sprite* sp = GetOwner()->AddComponent<Sprite>();
-		Texture* tex = ResourceManager::Get<Texture>(L"snipe");
-		sp->SetTexture(tex);
+		Animator* anim = GetOwner()->AddComponent<Animator>();
+		anim->AddAnimation(L"forward", ResourceManager::Get<Animation>(L"CatForward"));
+		anim->AddAnimation(L"right", ResourceManager::Get<Animation>(L"CatRight"));
+		anim->AddAnimation(L"backward", ResourceManager::Get<Animation>(L"CatBackward"));
+		anim->AddAnimation(L"left", ResourceManager::Get<Animation>(L"CatLeft"));
+		anim->AddAnimation(L"sit", ResourceManager::Get<Animation>(L"CatSit"));
+		anim->SetAnimation(L"sit");
+		anim->SetScale(Vector2(2,2));
 
 		Camera* cam = GetOwner()->AddComponent<Camera>();
 		cam->SetTarget(GetOwner());
 		CameraManager::SetTargetCamera(cam);
+
+		GetOwner()->AddComponent<Renderer>();
 	}
 
 	void TestScript::OnUpdate()
 	{
+		Animator* anim = GetOwner()->GetComponent<Animator>();
 		Vector2 pos = tr->GetPosition();
 		if (Input::IsKeyStay(VK_LEFT))
 		{
 			pos.x -= 200 * Time::GetDeltaTime();
+			anim->SetAnimation(L"left");
 		}
 		if (Input::IsKeyStay(VK_RIGHT))
 		{
 			pos.x += 200 * Time::GetDeltaTime();
+			anim->SetAnimation(L"right");
 		}
 		if (Input::IsKeyStay(VK_UP))
 		{
 			pos.y -= 200 * Time::GetDeltaTime();
+			anim->SetAnimation(L"backward");
 		}
 		if (Input::IsKeyStay(VK_DOWN))
 		{
 			pos.y += 200 * Time::GetDeltaTime();
+			anim->SetAnimation(L"forward");
 		}
 
 		tr->SetPosition(pos);
@@ -74,15 +88,6 @@ namespace WE
 
 	void TestScript::OnRender(const HDC& hdc)
 	{
-		Vector2 pos = tr->GetPosition();
-
-		for (int i = 0; i < 1; i++)
-		{
-			for (int j = 0; j < 1; j++)
-			{
-				Rectangle(hdc, (pos.x - 10.f) + (30 * i) , (pos.y - 10.f) + (30 * j), (pos.x + 10.f) + (30 * i), (pos.y + 10.f) + (30 * j));
-			}
-		}
 	}
 
 	void TestScript::OnCollisionEnter()

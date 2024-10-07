@@ -1,9 +1,9 @@
 #pragma once
-#include "Component.h"
+#include "RenderComponent.h"
 
 namespace WE
 {
-	class Sprite : public Component
+	class Sprite : public RenderComponent
 	{
 	public:
 		Sprite();
@@ -14,7 +14,7 @@ namespace WE
 		void OnLateUpdate()  override;
 		void OnRender(const HDC& hdc) override;
 
-		inline void SetTexture(class Texture* const texture) { mTexture = texture; }
+		void SetTexture(class Texture* const texture);
 		inline class Texture* GetTexture() const { return mTexture; }
 
 		inline void SetOffset(Vector2 pos) { mOffset = pos; }
@@ -33,9 +33,7 @@ namespace WE
 		}
 		inline Vector2 GetScale() const { return mScale; }
 
-	private:
-		void gdiRender(const HDC& hdc);
-		void gdipRender(const HDC& hdc);
+		void GetRenderValue(RenderValue& values) override;
 
 	private:
 		class Texture* mTexture;
@@ -44,8 +42,6 @@ namespace WE
 		Vector2 mSpritePos;
 		Vector2 mOffset;
 		Vector2 mScale;
-
-		float ang;
 	};
 }
 

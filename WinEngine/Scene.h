@@ -7,7 +7,7 @@ namespace WE
 	{
 	public:
 		Scene();
-		~Scene();
+		virtual ~Scene();
 
 		void Initialize();
 		void Update();

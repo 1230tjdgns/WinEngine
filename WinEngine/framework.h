@@ -21,6 +21,10 @@
 #include <set>
 #include <unordered_set>
 #include <memory>
+#include <functional>
+
+// 디버그
+#include <iostream>
 
 // 그래픽
 #include <wingdi.h>
@@ -30,6 +34,7 @@
 #pragma comment (lib, "winmm.lib")
 #pragma comment (lib, "gdiplus.lib")
 #pragma comment (lib, "msimg32.lib")
+
 
 // 커스텀 헤더
 #include "Enums.h"

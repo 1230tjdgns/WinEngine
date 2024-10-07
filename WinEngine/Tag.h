@@ -7,7 +7,7 @@ namespace WE
 	{
 	public:
 		Tag();
-		~Tag();
+		virtual ~Tag();
 
 		inline void SetName(const std::wstring& name)
 		{
