@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Renderer.h"
 
 namespace WE
 {
@@ -13,6 +14,7 @@ namespace WE
 	{
 		mComponents.resize((UINT)eComponentType::END, nullptr);
 		AddComponent<Transform>();
+		AddComponent<Renderer>(true);
 	}
 
 	Entity::~Entity()

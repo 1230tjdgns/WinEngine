@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "AnimationScript.h"
 
 namespace WE
 {
@@ -12,14 +13,50 @@ namespace WE
 
 			void operator()()
 			{
-				func();
+				if(func)
+					func();
 			}
+
+			void operator=(std::function<void()>& f)
+			{
+				func = f;
+			}
+
+			Event()
+			{
+				func = nullptr;
+			}
+
 		};
 		struct Events
 		{
 			Event mStartEvent;
 			Event mEndEvent;
 			Event mStopEvent;
+		};
+		struct AnimationAndEvents
+		{
+			class Animation* animation;
+			Events events;
+
+			AnimationAndEvents()
+			{
+				animation = nullptr;
+				events = {};
+			}
+
+			AnimationAndEvents(class Animation* anim)
+			{
+				animation = anim;
+				events = {};
+			}
+		};
+
+		enum class eEventType
+		{
+			START,
+			END,
+			STOP
 		};
 
 	public:
@@ -31,7 +68,7 @@ namespace WE
 		void OnLateUpdate() override;
 		void OnRender(const HDC& hdc) override;
 
-		HRESULT AddAnimation(const std::wstring& name, class Animation* const animation);
+		bool AddAnimation(const std::wstring& name, class Animation* const animation);
 		void SetAnimation(const std::wstring& name);
 
 		inline void SetOffset(Vector2 pos) { mOffset = pos; }
@@ -51,16 +88,70 @@ namespace WE
 		inline Vector2 GetScale() const { return mScale; }
 
 		void GetRenderValue(RenderValue& values) override;
+
+		template<typename F, typename T>
+		bool BindEvent(const std::wstring& name, const eEventType type, F&& func, T&& ref)
+		{
+			Animations::iterator animIter = mAnimations.find(name);
+			if (animIter == mAnimations.end())
+				return false;
+
+			std::function<void()> bindFunc = std::bind(func, ref);
+
+			switch (type)
+			{
+			case eEventType::START:
+				animIter->second.events.mStartEvent = bindFunc;
+				break;
+			case eEventType::END:
+				animIter->second.events.mEndEvent = bindFunc;
+				break;
+			case eEventType::STOP:
+				animIter->second.events.mStopEvent = bindFunc;
+				break;
+			default:
+				return false;
+			}
+
+			return true;
+		}
+
+		template<typename T>
+		T* GetScript()
+		{
+			return static_cast<T*>(mScript);
+		}
+
+		template<typename T>
+		T* SetScript()
+		{
+			if (mScript)
+			{
+				delete mScript;
+				mScript = nullptr;
+			}
+
+			T* script = new T;
+			mScript = script;
+			mScript->Initialize();
+
+			return script;
+		}
+
 	private:
-		typedef std::unordered_map<std::wstring, class Animation*> Animations;
+		typedef std::unordered_map<std::wstring, AnimationAndEvents> Animations;
+
 	private:
 		Animations mAnimations;
-		class Animation* mActiveAnimation;
+		AnimationAndEvents mActiveAnimation;
+
 		UINT mFrameCounter;
+		UINT mLength;
+
 		float mTimer;
 		float mFrameDuration;
-		UINT mLength;
-	private:
+
+		AnimationScript* mScript;
 
 	private:
 		class Transform* mOwnerTransform;
@@ -68,6 +159,7 @@ namespace WE
 		Vector2 mSpritePos;
 		Vector2 mOffset;
 		Vector2 mScale;
+
 		bool mLoop;
 	};
 }

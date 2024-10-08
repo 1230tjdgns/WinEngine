@@ -11,6 +11,7 @@
 #include "CameraManager.h"
 #include "Renderer.h"
 #include "Animator.h"
+#include "ASTest.h"
 
 namespace WE
 {
@@ -36,6 +37,10 @@ namespace WE
 		anim->AddAnimation(L"sit", ResourceManager::Get<Animation>(L"CatSit"));
 		anim->SetAnimation(L"sit");
 		anim->SetScale(Vector2(2,2));
+
+		anim->BindEvent(L"right", Animator::eEventType::END, &TestScript::TEST, this);
+
+		ASTest* as = anim->SetScript<ASTest>();
 
 		Camera* cam = GetOwner()->AddComponent<Camera>();
 		cam->SetTarget(GetOwner());
@@ -100,6 +105,11 @@ namespace WE
 
 	void TestScript::OnCollisionExit()
 	{
+	}
+
+	void TestScript::TEST()
+	{
+		//assert(false);
 	}
 
 }

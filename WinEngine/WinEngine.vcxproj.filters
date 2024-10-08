@@ -134,6 +134,15 @@
     <Filter Include="System\Component\Components\Render\Animator">
       <UniqueIdentifier>{51cb24f4-bbb6-4858-9c2c-d1a0ff9a7d1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Component\Components\Render\Animator\AnimationScript">
+      <UniqueIdentifier>{666d717f-572b-40b8-ad65-99787cbe7c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Render\Animator\AnimationScript\Temp">
+      <UniqueIdentifier>{cd2b9652-4f78-43e8-a56b-9a1c13efa3e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Component\Components\Render\Animator\AnimationScript\Temp\Test">
+      <UniqueIdentifier>{b489351a-de87-472a-870b-14287e2dc7ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -250,6 +259,12 @@
     <ClInclude Include="RenderComponent.h">
       <Filter>System\Component\Components\Render</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationScript.h">
+      <Filter>System\Component\Components\Render\Animator\AnimationScript\Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTest.h">
+      <Filter>System\Component\Components\Render\Animator\AnimationScript\Temp\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinEngine.cpp" />
@@ -342,6 +357,12 @@
     </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
       <Filter>System\Component\Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationScript.cpp">
+      <Filter>System\Component\Components\Render\Animator\AnimationScript\Temp</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTest.cpp">
+      <Filter>System\Component\Components\Render\Animator\AnimationScript\Temp\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

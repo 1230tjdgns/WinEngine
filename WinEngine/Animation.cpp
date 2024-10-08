@@ -12,7 +12,8 @@ namespace WE
 		mFrameLength(0),
 		mFrameWidth(0.f),
 		mFrameHeight(0.f),
-		mTexture(nullptr)
+		mTexture(nullptr),
+		mLoop(false)
 	{
 	}
 

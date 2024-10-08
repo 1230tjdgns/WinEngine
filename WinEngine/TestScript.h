@@ -18,6 +18,8 @@ namespace WE
 		void OnCollisionStay() override;
 		void OnCollisionExit() override;
 
+		void TEST();
+
 	private:
 		class Transform* tr;
 	};

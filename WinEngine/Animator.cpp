@@ -5,27 +5,35 @@
 #include "Transform.h"
 #include "CameraManager.h"
 #include "Texture.h"
+#include "ASTest.h"
 
 namespace WE
 {
+
 	Animator::Animator() :
 		RenderComponent(eComponentType::ANIMATOR),
 		mAnimations{},
-		mActiveAnimation(nullptr),
+		mActiveAnimation{},
 		mFrameCounter(0),
 		mTimer(0.f),
 		mFrameDuration(0.f),
 		mLength(0),
+		mScript(nullptr),
 		mOwnerTransform(nullptr),
 		mSpritePos(Vector2::Zero),
 		mOffset(Vector2::Zero),
-		mScale(Vector2::One)
+		mScale(Vector2::One),
+		mLoop(false)
 	{
 	}
 
 	Animator::~Animator()
 	{
-		int a = 0;
+		if (mScript)
+		{
+			delete mScript;
+			mScript = nullptr;
+		}
 	}
 
 	void Animator::OnInitialize()
@@ -35,30 +43,35 @@ namespace WE
 
 	void Animator::OnUpdate()
 	{
-		if (mFrameCounter >= mLength - 1 && !mLoop)
-			return;
 
-		mTimer += Time::GetDeltaTime();
-
-		if (mTimer >= mFrameDuration)
+		if ((mFrameCounter >= mLength - 1 && !mLoop) == false)
 		{
-			mTimer = 0;
-			++mFrameCounter;
+			mTimer += Time::GetDeltaTime();
 
-			if (mFrameCounter >= mLength)
+			if (mTimer >= mFrameDuration)
 			{
-				if (mLoop)
-				{
-					mFrameCounter = 0;
-				}
-				else
-				{
-					mFrameCounter = mLength - 1;
-				}
+				mTimer = 0;
+				++mFrameCounter;
 
-				mEndEvent();
+				if (mFrameCounter >= mLength)
+				{
+					if (mLoop)
+					{
+						mFrameCounter = 0;
+					}
+					else
+					{
+						mFrameCounter = mLength - 1;
+					}
+
+					// End Event Call
+					mActiveAnimation.events.mEndEvent();
+				}
 			}
 		}
+
+		if (mScript)
+			mScript->Update();
 	}
 
 	void Animator::OnLateUpdate()
@@ -72,20 +85,22 @@ namespace WE
 
 	void Animator::OnRender(const HDC& hdc)
 	{
+		if (mScript)
+			mScript->Render(hdc);
 	}
 
-	HRESULT Animator::AddAnimation(const std::wstring& name, Animation* const animation)
+	bool Animator::AddAnimation(const std::wstring& name, Animation* const animation)
 	{
 		if (animation == nullptr)
-			return E_FAIL;
+			return false;
 
 		Animations::iterator animIter = mAnimations.find(name);
 		if (animIter != mAnimations.end())
-			return E_FAIL;
+			return false;
 
 		mAnimations.insert(std::make_pair(name, animation));
 
-		return S_OK;
+		return true;
 	}
 
 	void Animator::SetAnimation(const std::wstring& name)
@@ -94,27 +109,37 @@ namespace WE
 		if (animIter == mAnimations.end())
 			return;
 
+		// End Event Call
+		if (mActiveAnimation.animation)
+		{
+			mActiveAnimation.events.mStopEvent();
+		}
+
 		mActiveAnimation = animIter->second;
-		mFrameDuration = mActiveAnimation->GetFrameDuration();
-		mLength = mActiveAnimation->GetFrameLength();
-		mLoop = mActiveAnimation->IsLoop();
+		mFrameDuration = mActiveAnimation.animation->GetFrameDuration();
+		mLength = mActiveAnimation.animation->GetFrameLength();
+		mLoop = mActiveAnimation.animation->IsLoop();
 
 		mFrameCounter = 0;
 		mTimer = 0.f;
+
+		// Start Event Call
+		mActiveAnimation.events.mStartEvent();
 	}
 
 	void Animator::GetRenderValue(RenderValue& values)
 	{
-		if (mActiveAnimation)
+		if (mActiveAnimation.animation)
 		{
-			if (mActiveAnimation->GetTexture())
+			if (mActiveAnimation.animation->GetTexture())
 			{
-				values.texture = mActiveAnimation->GetTexture();
+				values.texture = mActiveAnimation.animation->GetTexture();
 				values.renderPos = mSpritePos + mOffset;
-				values.renderSize = Vector2(mActiveAnimation->GetFrameWidth(), mActiveAnimation->GetFrameHeight()) * mScale;
-				values.sourcePos = mActiveAnimation->GetFrameLeftTop(mFrameCounter);
-				values.sourceSize = Vector2(mActiveAnimation->GetFrameWidth(), mActiveAnimation->GetFrameHeight());
+				values.renderSize = Vector2(mActiveAnimation.animation->GetFrameWidth(), mActiveAnimation.animation->GetFrameHeight()) * mScale;
+				values.sourcePos = mActiveAnimation.animation->GetFrameLeftTop(mFrameCounter);
+				values.sourceSize = Vector2(mActiveAnimation.animation->GetFrameWidth(), mActiveAnimation.animation->GetFrameHeight());
 			}
 		}
 	}
+
 }
