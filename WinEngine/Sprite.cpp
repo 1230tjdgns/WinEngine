@@ -3,7 +3,6 @@
 #include "Transform.h"
 #include "Texture.h"
 #include "CoreFunction.h"
-#include "CameraManager.h"
 #include "ResourceManager.h"
 
 namespace WE
@@ -36,7 +35,6 @@ namespace WE
 		if (mOwnerTransform)
 		{
 			mSpritePos = mOwnerTransform->GetPosition();
-			mSpritePos = CameraManager::CalculateWorldPos(mSpritePos);
 		}
 	}
 

@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Animator.h"
 #include "Texture.h"
+#include "CameraManager.h"
 
 #define NO_ROTATE
 
@@ -44,6 +45,9 @@ namespace WE
 
 		if (mRenderValue.texture == nullptr)
 			return;
+
+		mRenderValue.renderPos = CameraManager::CalculateWorldPos(mRenderValue.renderPos);
+		mRenderValue.renderPos -= mRenderValue.renderSize / 2;
 
 		switch (mRenderValue.texture->GetTextureType())
 		{

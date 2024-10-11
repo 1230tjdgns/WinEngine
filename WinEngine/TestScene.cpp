@@ -2,6 +2,7 @@
 #include "TestEntity.h"
 #include "TestEntity2.h"
 #include "Global.h"
+#include "CollisionManager.h"
 
 namespace WE
 {
@@ -15,8 +16,12 @@ namespace WE
 
 	void TestScene::OnInitialize()
 	{
+		CollisionManager::SetCollisionLayer(eLayerType::NONE, eLayerType::NONE);
+
+
 		TestEntity* test = Global::CreateEntity<TestEntity>(eLayerType::NONE);
 		TestEntity2* test2 = Global::CreateEntity<TestEntity2>(eLayerType::NONE);
+
 	}
 
 	void TestScene::OnUpdate()

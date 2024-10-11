@@ -56,4 +56,41 @@ namespace WE
 			ch = towlower(ch);
 		}
 	}
+
+	static void DrawRectCenter(const HDC& hdc, const float x, const float y, const float width, const float height, const COLORREF penColor, const int penWidth = 1)
+	{
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
+		HPEN green = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+		HPEN oldPen = (HPEN)SelectObject(hdc, green);
+
+		Rectangle(
+			hdc,
+			x - width / 2,
+			y - height / 2,
+			x + width / 2,
+			y + height / 2);
+
+		SelectObject(hdc, oldBrush);
+		oldPen = (HPEN)SelectObject(hdc, oldPen);
+		DeleteObject(green);
+	}
+
+	static void DrawCircleCenter(const HDC& hdc, const float x, const float y, const float radius, const COLORREF penColor, const int penWidth = 1)
+	{
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
+		HPEN green = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+		HPEN oldPen = (HPEN)SelectObject(hdc, green);
+
+		Ellipse(
+			hdc,
+			x - radius,
+			y - radius,
+			x + radius,
+			y + radius
+		);
+
+		SelectObject(hdc, oldBrush);
+		oldPen = (HPEN)SelectObject(hdc, oldPen);
+		DeleteObject(green);
+	}
 }

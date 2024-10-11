@@ -39,8 +39,6 @@ namespace WE
 		template<typename T>
 		void CheckTransition(T& nowState, std::unordered_map<T, State>& states)
 		{
-			states[nowState];
-			
 			for (Transition& transition : states[nowState].transitions)
 			{
 				bool result = false;
@@ -55,16 +53,12 @@ namespace WE
 		template<typename T, typename F, typename R>
 		void SetStateInitFunction(std::unordered_map<T, State>& states, T state, F&& func, R&& ref)
 		{
-			states[state];
-
 			states[state].initFunc = std::bind(func, ref);
 		}
 
 		template<typename T, typename F, typename R>
 		void AddTransition(std::unordered_map<T, State>& states, T state, T otherState, F&& func, R&& ref)
 		{
-			;
-
 			std::function<bool()> bindFunc = std::bind(func, ref);
 
 			states[state].transitions.emplace_back(bindFunc, (UINT)otherState);

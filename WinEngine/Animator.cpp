@@ -3,7 +3,6 @@
 #include "Time.h"
 #include "Entity.h"
 #include "Transform.h"
-#include "CameraManager.h"
 #include "Texture.h"
 #include "ASTest.h"
 
@@ -79,7 +78,6 @@ namespace WE
 		if (mOwnerTransform)
 		{
 			mSpritePos = mOwnerTransform->GetPosition();
-			mSpritePos = CameraManager::CalculateWorldPos(mSpritePos);
 		}
 	}
 

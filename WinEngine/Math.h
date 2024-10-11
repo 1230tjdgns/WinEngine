@@ -120,7 +120,6 @@ namespace WE
 		static Vector2 Rotate(Vector2 vec, const float degree)
 		{
 			float radian = Radian(degree);
-			//vec.Normalize();
 
 			Vector2 result;
 
@@ -135,6 +134,11 @@ namespace WE
 			}
 
 			return result;
+		}
+
+		static float Distance(const Vector2& vec1, const Vector2& vec2)
+		{
+			return fabs((vec1 - vec2).Length());
 		}
 
 		static Vector2 Zero;

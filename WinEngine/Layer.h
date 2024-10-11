@@ -29,6 +29,8 @@ namespace WE
 			EraseVector(mEntities, func);
 		}
 
+		std::vector<Entity*>* GetEntities() { return &mEntities; }
+
 	private:
 		std::vector<Entity*> mEntities;
 		eLayerType mType;

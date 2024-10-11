@@ -3,6 +3,7 @@
 enum class eComponentType
 {
 	TRANSFORM,
+	COLLIDER,
 	SCRIPT,
 	CAMERA,
 	SPRITE,
@@ -36,4 +37,11 @@ enum class eTextureType
 	PNG,
 	JPG,
 	END
+};
+
+enum class eColliderType
+{
+	NONE,
+	BOX,
+	CIRCLE,
 };

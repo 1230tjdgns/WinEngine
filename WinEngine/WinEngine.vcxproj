@@ -147,8 +147,12 @@
     <ClInclude Include="AnimationScript.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="ASTest.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CoreFunction.h" />
@@ -189,8 +193,12 @@
     <ClCompile Include="AnimationScript.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="ASTest.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="CoreFunction.cpp" />
     <ClCompile Include="Entity.cpp" />

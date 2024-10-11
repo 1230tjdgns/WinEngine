@@ -12,11 +12,16 @@
 #include "Renderer.h"
 #include "Animator.h"
 #include "ASTest.h"
+#include "BoxCollider.h"
+#include "CircleCollider.h"
+#include "CoreFunction.h"
+#include "Component.h"
 
 namespace WE
 {
 	TestScript::TestScript() :
-		tr(nullptr)
+		tr(nullptr),
+		mState(eState::IDLE)
 	{
 	}
 
@@ -38,43 +43,32 @@ namespace WE
 		anim->SetAnimation(L"sit");
 		anim->SetScale(Vector2(2,2));
 
-		anim->BindEvent(L"right", Animator::eEventType::END, &TestScript::TEST, this);
-
-		ASTest* as = anim->SetScript<ASTest>();
-
 		Camera* cam = GetOwner()->AddComponent<Camera>();
 		cam->SetTarget(GetOwner());
 		CameraManager::SetTargetCamera(cam);
 
 		GetOwner()->AddComponent<Renderer>();
+
+		//BoxCollider* box = GetOwner()->AddComponent<BoxCollider>();
+		//box->SetSize(anim->GetScale() * Vector2(32, 32));
+
+		CircleCollider* circle = GetOwner()->AddComponent<CircleCollider>();
+		circle->SetRadius(16 * 2);
+
+		circle->BindCollisionEvent(Collider::eCollisionEventType::ENTER, &TestScript::Enter, this);
 	}
 
 	void TestScript::OnUpdate()
 	{
-		Animator* anim = GetOwner()->GetComponent<Animator>();
-		Vector2 pos = tr->GetPosition();
-		if (Input::IsKeyStay(VK_LEFT))
+		switch (mState)
 		{
-			pos.x -= 200 * Time::GetDeltaTime();
-			anim->SetAnimation(L"left");
+		case eState::IDLE:
+			idle();
+			break;
+		case eState::WALK:
+			walk();
+			break;
 		}
-		if (Input::IsKeyStay(VK_RIGHT))
-		{
-			pos.x += 200 * Time::GetDeltaTime();
-			anim->SetAnimation(L"right");
-		}
-		if (Input::IsKeyStay(VK_UP))
-		{
-			pos.y -= 200 * Time::GetDeltaTime();
-			anim->SetAnimation(L"backward");
-		}
-		if (Input::IsKeyStay(VK_DOWN))
-		{
-			pos.y += 200 * Time::GetDeltaTime();
-			anim->SetAnimation(L"forward");
-		}
-
-		tr->SetPosition(pos);
 
 		if (Input::IsKeyDown('D'))
 		{
@@ -110,6 +104,67 @@ namespace WE
 	void TestScript::TEST()
 	{
 		//assert(false);
+	}
+
+	void TestScript::Enter(Collider* other)
+	{
+		//assert(false);
+		Global::Destroy(other->GetOwner());
+	}
+
+	void TestScript::idle()
+	{
+		Animator* anim = GetOwner()->GetComponent<Animator>();
+		if (Input::IsKeyStay(VK_LEFT))
+		{
+			anim->SetAnimation(L"left");
+			mState = eState::WALK;
+		}
+		if (Input::IsKeyStay(VK_RIGHT))
+		{
+			anim->SetAnimation(L"right");
+			mState = eState::WALK;
+		}
+		if (Input::IsKeyStay(VK_UP))
+		{
+			anim->SetAnimation(L"backward");
+			mState = eState::WALK;
+		}
+		if (Input::IsKeyStay(VK_DOWN))
+		{
+			anim->SetAnimation(L"forward");
+			mState = eState::WALK;
+		}
+	}
+
+	void TestScript::walk()
+	{
+		Vector2 pos = tr->GetPosition();
+		if (Input::IsKeyStay(VK_LEFT))
+		{
+			pos.x -= 200 * Time::GetDeltaTime();
+		}
+		if (Input::IsKeyStay(VK_RIGHT))
+		{
+			pos.x += 200 * Time::GetDeltaTime();
+		}
+		if (Input::IsKeyStay(VK_UP))
+		{
+			pos.y -= 200 * Time::GetDeltaTime();
+		}
+		if (Input::IsKeyStay(VK_DOWN))
+		{
+			pos.y += 200 * Time::GetDeltaTime();
+		}
+		tr->SetPosition(pos);
+
+		if (Input::IsKeyUp(VK_LEFT) || Input::IsKeyUp(VK_RIGHT) ||
+			Input::IsKeyUp(VK_UP) || Input::IsKeyUp(VK_DOWN))
+		{
+			mState = eState::IDLE;
+			Animator* anim = GetOwner()->GetComponent<Animator>();
+			anim->SetAnimation(L"sit");
+		}
 	}
 
 }

@@ -8,6 +8,8 @@
 #include "Input.h"
 #include "CameraManager.h"
 #include "Renderer.h"
+#include "BoxCollider.h"
+#include "CircleCollider.h"
 
 namespace WE
 {
@@ -31,6 +33,11 @@ namespace WE
 		cam->SetTarget(GetOwner());
 		GetOwner()->AddComponent<Renderer>();
 
+		BoxCollider* box = GetOwner()->AddComponent<BoxCollider>();
+		box->SetSize(Vector2(100, 100));
+
+		//CircleCollider* circle = GetOwner()->AddComponent<CircleCollider>();
+		//circle->SetRadius(50);
 	}
 
 	void TestScript2::OnUpdate()

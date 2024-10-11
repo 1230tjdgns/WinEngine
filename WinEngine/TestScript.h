@@ -6,6 +6,13 @@ namespace WE
 	class TestScript : public Script
 	{
 	public:
+		enum class eState
+		{
+			IDLE,
+			WALK,
+		};
+
+	public:
 		TestScript();
 		~TestScript();
 
@@ -20,8 +27,15 @@ namespace WE
 
 		void TEST();
 
+		void Enter(class Collider* other);
+
+	private:
+		void idle();
+		void walk();
+
 	private:
 		class Transform* tr;
+		eState mState;
 	};
 }
 

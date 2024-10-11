@@ -35,7 +35,6 @@
 #pragma comment (lib, "gdiplus.lib")
 #pragma comment (lib, "msimg32.lib")
 
-
 // 커스텀 헤더
 #include "Enums.h"
 #include "CommonFunctions.h"

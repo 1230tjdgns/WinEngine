@@ -6,6 +6,7 @@
 #include "ResourceManager.h"
 #include "GC.h"
 #include "CameraManager.h"
+#include "CollisionManager.h"
 
 //#define USE_DIB
 
@@ -48,17 +49,20 @@ namespace WE
 		GC::Initialize();
 		CameraManager::Initialize();
 		SceneManager::Initialize();
+		CollisionManager::Initialize();
 	}
 
 	void GameCore::Update()
 	{
 		Time::Tick();
 		SceneManager::Update();
+		CollisionManager::Update();
 	}
 
 	void GameCore::LateUpdate()
 	{
 		SceneManager::LateUpdate();
+		CollisionManager::LateUpdate();
 		CameraManager::LateUpdate();
 	}
 
@@ -67,6 +71,7 @@ namespace WE
 		clearScreen();
 
 		SceneManager::Render(mBackHdc);
+		CollisionManager::Render(mBackHdc);
 		Time::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);

@@ -42,6 +42,8 @@ namespace WE
 			}
 		}
 
+		std::vector<Entity*>* GetLayerEntities(eLayerType type) { return mLayers[(UINT)type]->GetEntities(); }
+
 	private:
 		std::vector<Layer*> mLayers;
 	};
