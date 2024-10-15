@@ -156,6 +156,7 @@
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CoreFunction.h" />
+    <ClInclude Include="DefaultSetting.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="framework.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestEntity2.h" />
     <ClInclude Include="TestScript2.h" />
@@ -212,6 +214,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Script.cpp" />

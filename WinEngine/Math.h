@@ -39,6 +39,10 @@ namespace WE
 		{
 			return Vector2(x - scalar, y - scalar);
 		}
+		Vector2 operator-(void) const
+		{
+			return Vector2(-x, -y);
+		}
 		Vector2 operator*(const Vector2& vec2) const
 		{
 			return Vector2(x * vec2.x, y * vec2.y);
@@ -93,6 +97,14 @@ namespace WE
 			y *= scalar;
 			return *this;
 		}
+		bool operator==(const Vector2& vec) const
+		{
+			return x == vec.x && y == vec.y;
+		}
+		bool operator!=(const Vector2& vec) const
+		{
+			return x != vec.x || y != vec.y;
+		}
 
 		static inline float Dot(const Vector2& vec1, const Vector2& vec2)
 		{
@@ -112,8 +124,10 @@ namespace WE
 		Vector2& Normalize()
 		{
 			float len = this->Length();
-			x /= len;
-			y /= len;
+			if(x != 0)
+				x /= len;
+			if(y != 0)
+				y /= len;
 			return *this;
 		}
 

@@ -152,6 +152,12 @@
     <Filter Include="System\Component\Components\Collider\CircleCollider">
       <UniqueIdentifier>{60492230-6033-469a-9443-5bbe1221936e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Component\Components\Rigidbody">
+      <UniqueIdentifier>{744839c2-fa51-48c1-9724-ee8529e33693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Common\DefaultSetting">
+      <UniqueIdentifier>{371666ae-27ee-4fb1-8419-8279b2b5c00c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -286,6 +292,12 @@
     <ClInclude Include="CircleCollider.h">
       <Filter>System\Component\Components\Collider\CircleCollider</Filter>
     </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>System\Component\Components\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultSetting.h">
+      <Filter>System\Common\DefaultSetting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinEngine.cpp" />
@@ -396,6 +408,9 @@
     </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>System\Component\Components\Collider\CircleCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>System\Component\Components\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

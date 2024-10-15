@@ -16,6 +16,7 @@
 #include "CircleCollider.h"
 #include "CoreFunction.h"
 #include "Component.h"
+#include "Rigidbody.h"
 
 namespace WE
 {
@@ -32,7 +33,7 @@ namespace WE
 	void TestScript::OnInitialize()
 	{
 		tr = GetOwner()->GetComponent<Transform>();
-		tr->SetPosition(Vector2(-400, 0));
+		tr->SetPosition(Vector2(-400, 100));
 
 		Animator* anim = GetOwner()->AddComponent<Animator>();
 		anim->AddAnimation(L"forward", ResourceManager::Get<Animation>(L"CatForward"));
@@ -56,6 +57,8 @@ namespace WE
 		circle->SetRadius(16 * 2);
 
 		circle->BindCollisionEvent(Collider::eCollisionEventType::ENTER, &TestScript::Enter, this);
+
+		Rigidbody* rb = GetOwner()->AddComponent<Rigidbody>();
 	}
 
 	void TestScript::OnUpdate()
@@ -139,24 +142,27 @@ namespace WE
 
 	void TestScript::walk()
 	{
-		Vector2 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		Vector2 pos = Vector2::Zero;
+		float speed = 10000;
 		if (Input::IsKeyStay(VK_LEFT))
 		{
-			pos.x -= 200 * Time::GetDeltaTime();
+			pos.x = -speed;
 		}
 		if (Input::IsKeyStay(VK_RIGHT))
 		{
-			pos.x += 200 * Time::GetDeltaTime();
+			pos.x = speed;
 		}
 		if (Input::IsKeyStay(VK_UP))
 		{
-			pos.y -= 200 * Time::GetDeltaTime();
+			pos.y = -speed;
 		}
 		if (Input::IsKeyStay(VK_DOWN))
 		{
-			pos.y += 200 * Time::GetDeltaTime();
+			pos.y = speed;
 		}
-		tr->SetPosition(pos);
+		if (rb)
+			rb->AddForce(pos);
 
 		if (Input::IsKeyUp(VK_LEFT) || Input::IsKeyUp(VK_RIGHT) ||
 			Input::IsKeyUp(VK_UP) || Input::IsKeyUp(VK_DOWN))

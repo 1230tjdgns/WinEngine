@@ -6,7 +6,6 @@
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #endif
 
-
 // 전역 변수:
 HINSTANCE hInst;
 WE::GameCore core;

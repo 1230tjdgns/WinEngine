@@ -3,6 +3,7 @@
 enum class eComponentType
 {
 	TRANSFORM,
+	RIGIDBODY,
 	COLLIDER,
 	SCRIPT,
 	CAMERA,
